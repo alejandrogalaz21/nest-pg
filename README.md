@@ -22,6 +22,14 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+# Resources
+
+[Nest.js Cheat Sheet](https://devtalles.com/files/nest-cheatsheet.pdf) Nest Cheat Sheet By [Klerith](https://github.com/Klerith) Fernando Herrera.
+
+### Repos
+
+- [Nest Car Dealership](https://github.com/Klerith/nest-car-dealership/blob/fin-seccion-3/src/cars/cars.controller.ts)
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
