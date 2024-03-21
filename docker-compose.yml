@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_db_nest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: pg_db_test
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - postgres_data_nest:/var/lib/postgresql/data
+volumes:
+  postgres_data_nest:
