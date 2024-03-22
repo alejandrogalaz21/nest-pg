@@ -27,13 +27,15 @@ export class CarsController {
 
   @Post()
   createCar(@Body() payload: CreateCarDto) {
-    console.log({ payload })
-    return payload
+    return this.carsService.create(payload)
   }
 
   @Patch(':id')
-  updateCar(@Param('id', ParseUUIDPipe) id: string, @Body() body: any) {
-    return body
+  updateCar(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() payload: UpdateCarDto,
+  ) {
+    return this.carsService.update(id, payload)
   }
 
   @Delete(':id')
