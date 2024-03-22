@@ -31,12 +31,12 @@ export class CarsController {
   }
 
   @Patch(':id')
-  updateCar(@Param('id', ParseUUIDPipe) id: number, @Body() body: any) {
+  updateCar(@Param('id', ParseUUIDPipe) id: string, @Body() body: any) {
     return body
   }
 
   @Delete(':id')
-  deleteCar(@Param('id', ParseUUIDPipe) id: number) {
+  deleteCar(@Param('id', ParseUUIDPipe) id: string) {
     return {
       method: 'delete',
       id,
