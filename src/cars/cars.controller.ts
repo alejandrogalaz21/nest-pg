@@ -9,7 +9,7 @@ import {
   Post,
 } from '@nestjs/common'
 import { CarsService } from './cars.service'
-
+import { CreateCarDto, UpdateCarDto } from './dto'
 @Controller('cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
@@ -26,8 +26,9 @@ export class CarsController {
   }
 
   @Post()
-  createCar(@Body() body: any) {
-    return body
+  createCar(@Body() payload: CreateCarDto) {
+    console.log({ payload })
+    return payload
   }
 
   @Patch(':id')
