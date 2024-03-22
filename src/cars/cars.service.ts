@@ -32,7 +32,7 @@ export class CarsService {
   }
 
   findOneById(id: string) {
-    const car = this.cars.find((car) => car.id === id)
+    const car = this.cars.find(car => car.id === id)
     if (!car) throw new NotFoundException(`Car with id '${id}' not found`)
     return car
   }
@@ -47,7 +47,7 @@ export class CarsService {
     let carDB = this.findOneById(id)
     if (updateCarDto.id && updateCarDto.id !== id)
       throw new BadRequestException(`Car id is not valid inside body`)
-    this.cars = this.cars.map((car) => {
+    this.cars = this.cars.map(car => {
       if (car.id === id) {
         carDB = { ...carDB, ...updateCarDto, id }
         return carDB
@@ -58,7 +58,6 @@ export class CarsService {
   }
 
   delete(id: string) {
-    const car = this.findOneById(id)
-    this.cars = this.cars.filter((car) => car.id !== id)
+    if (this.findOneById(id)) this.cars = this.cars.filter(car => car.id !== id)
   }
 }
