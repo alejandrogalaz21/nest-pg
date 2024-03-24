@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  api:
+  app:
     depends_on:
       - postgres
     build:
@@ -12,23 +12,24 @@ services:
     ports:
       - ${PORT}:${PORT}
     environment:
-      DB_HOST: mongo
-      DB_PORT: 27017
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
       PORT: ${PORT}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
 
   postgres:
     image: postgres:13
-    container_name: postgres_db_nest
+    container_name: postgres_db
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: pg_db_test
-      POSTGRES_USER: $POSTGRES_USER
-      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $DB_NAME
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
     volumes:
-      - postgres_data_nest:/var/lib/postgresql/data
+      - postgres_data_app:/var/lib/postgresql/data
 
 volumes:
-  postgres_data_nest:
+  postgres_data_app:

@@ -1,50 +1,45 @@
 version: '3'
 
 services:
-  pokedexapp:
+  app:
     depends_on:
       - mongo
     build:
       context: .
       dockerfile: Dockerfile
       target: development
-    image: nest-pokemon-api-dev
-    container_name: nest_pokemon_api_dev
+    image: nest-pg-dev
+    container_name: nest_pg_dev
     restart: always
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
       - 9229:9229
     environment:
       NODE_ENV: dev
-      DB_HOST: mongo
-      DB_PORT: 27017
-      PORT: 3000
+      PORT: ${PORT}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
     command: yarn start:dev
+    # debug
+    # command: yarn start:debug:docker
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-  mongo:
-    image: mongo:5.0
-    container_name: mongo_db_pokemon_dev
-    restart: unless-stopped
+  postgres:
+    image: postgres:13
+    container_name: postgres_db_dev
     ports:
-      - 27017:27017
-    volumes:
-      - mongodb_data:/data/db
-
-  mongo-express:
-    image: mongo-express
-    container_name: mongo_express_pokemon_dev
+      - 5432:5432
     environment:
-      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
-      - ME_CONFIG_BASICAUTH_USERNAME=admin
-      - ME_CONFIG_BASICAUTH_PASSWORD=admin
-    links:
-      - mongo
-    restart: unless-stopped
-    ports:
-      - 8099:8081
+      POSTGRES_DB: $DB_NAME
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
+    volumes:
+      - postgres_data_app_dev:/var/lib/postgresql/data
 
 volumes:
-  mongodb_data:
+  postgres_data_app_dev:
