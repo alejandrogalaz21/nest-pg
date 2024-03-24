@@ -6,7 +6,7 @@ import {
   Param,
   ParseUUIDPipe,
   Patch,
-  Post,
+  Post
 } from '@nestjs/common'
 import { CarsService } from './cars.service'
 import { CreateCarDto, UpdateCarDto } from './dto'
@@ -21,7 +21,6 @@ export class CarsController {
 
   @Get(':id')
   getCarById(@Param('id', ParseUUIDPipe) id: string) {
-    console.log({ id })
     return this.carsService.findOneById(id)
   }
 
@@ -33,7 +32,7 @@ export class CarsController {
   @Patch(':id')
   updateCar(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() payload: UpdateCarDto,
+    @Body() payload: UpdateCarDto
   ) {
     return this.carsService.update(id, payload)
   }
