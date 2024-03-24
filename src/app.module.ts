@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { ConfigModule } from '@nestjs/config'
-
+import { ConfigModule, ConfigService } from '@nestjs/config'
+// Config's
+import { PgConfig, AppConfig } from './config'
 // modules
 import { PgModule } from './databases/pg.module'
 import { CarsModule } from './cars/cars.module'
@@ -10,14 +10,19 @@ import { SeedModule } from './seed/seed.module'
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, load: [AppConfig, PgConfig] }),
     PgModule,
     CarsModule,
     BrandsModule,
-    SeedModule,
+    SeedModule
   ],
   controllers: [],
   providers: [],
-  exports: [],
+  exports: []
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private configService: ConfigService) {
+    console.log('ENV app :', this.configService.get('app'))
+    console.log('ENV pg :', this.configService.get('pg'))
+  }
+}

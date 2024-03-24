@@ -1,23 +1,27 @@
 import { Module } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: 'annie',
-      entities: [],
-      synchronize: true,
-    }),
-  ],
+    TypeOrmModule.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('pg.host'),
+        port: configService.get('pg.port'),
+        username: configService.get('pg.user'),
+        password: configService.get('pg.password'),
+        database: configService.get('pg.database'),
+        // The entities path (database tables) to be synchronized
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: configService.get('pg.synchronize')
+      }),
+      inject: [ConfigService]
+    })
+  ]
 })
 export class PgModule {
-  constructor() {
-    const { DB_USER, DB_PASSWORD } = process.env
-    console.log({ DB_USER, DB_PASSWORD })
+  constructor(private configService: ConfigService) {
+    console.log(this.configService.get('pg'))
   }
 }

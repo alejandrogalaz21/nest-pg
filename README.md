@@ -97,3 +97,7 @@ src
     └── common.service.ts
 
 ```
+
+### Resources
+
+- [How to use TypeOrmModule forRootAsync and configService](https://thriveread.com/typeormmodule-forrootasync-with-configservice/)
