@@ -1,5 +1,23 @@
 version: '3.7'
 services:
+  api:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nest-pg
+    container_name: nest_pg
+    restart: always
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      DB_HOST: mongo
+      DB_PORT: 27017
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      PORT: ${PORT}
+
   postgres:
     image: postgres:13
     container_name: postgres_db_nest
@@ -11,5 +29,6 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     volumes:
       - postgres_data_nest:/var/lib/postgresql/data
+
 volumes:
   postgres_data_nest:
