@@ -12,8 +12,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
         username: configService.get('pg.user'),
         password: configService.get('pg.password'),
         database: configService.get('pg.database'),
-        // The entities path (database tables) to be synchronized
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
         autoLoadEntities: true,
         synchronize: configService.get('pg.synchronize')
       }),
@@ -22,5 +20,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
   ]
 })
 export class PgModule {
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) {
+    console.log(this.configService.get('pg'))
+  }
 }

@@ -1,27 +1,18 @@
 import {
-  Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn
 } from 'typeorm'
 
-@Entity()
-export class User {
+export class Product {
   @PrimaryGeneratedColumn('uuid')
   id: number
 
-  @Column()
-  name: string
-
-  @Column()
-  lastName: string
-
-  @Column()
-  email: string
-
-  @Column()
-  password: string
+  @Column('text', {
+    unique: true
+  })
+  title: string
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date
