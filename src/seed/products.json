@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Camiseta de algodón",
+    "price": 29.99,
+    "description": "Camiseta de algodón suave y cómoda para uso diario.",
+    "slug": "camiseta-algodon",
+    "stock": 100,
+    "sizes": ["S", "M", "L", "XL"],
+    "gender": "unisex",
+    "tags": ["algodón", "ropa casual", "camiseta básica"]
+  },
+  {
+    "title": "Zapatillas deportivas",
+    "price": 59.99,
+    "description": "Zapatillas deportivas para correr o entrenar.",
+    "slug": "zapatillas-deportivas",
+    "stock": 50,
+    "sizes": ["US 7", "US 8", "US 9", "US 10"],
+    "gender": "men",
+    "tags": ["deportivas", "running", "entrenamiento"]
+  },
+  {
+    "title": "Vestido floral",
+    "price": 39.99,
+    "description": "Vestido con estampado floral perfecto para el verano.",
+    "slug": "vestido-floral",
+    "stock": 30,
+    "sizes": ["XS", "S", "M", "L"],
+    "gender": "women",
+    "tags": ["vestido", "verano", "flores"]
+  },
+  {
+    "title": "Pantalones cortos",
+    "price": 19.99,
+    "description": "Pantalones cortos casuales para usar en el día a día.",
+    "slug": "pantalones-cortos",
+    "stock": 80,
+    "sizes": ["S", "M", "L"],
+    "gender": "men",
+    "tags": ["pantalones cortos", "casual", "verano"]
+  },
+  {
+    "title": "Sudadera con capucha",
+    "price": 49.99,
+    "description": "Sudadera con capucha y bolsillos frontales.",
+    "slug": "sudadera-con-capucha",
+    "stock": 60,
+    "sizes": ["XS", "S", "M", "L"],
+    "gender": "unisex",
+    "tags": ["sudadera", "capucha", "invierno"]
+  },
+  {
+    "title": "Falda plisada",
+    "price": 34.99,
+    "description": "Falda plisada con diseño elegante.",
+    "slug": "falda-plisada",
+    "stock": 40,
+    "sizes": ["S", "M", "L"],
+    "gender": "women",
+    "tags": ["falda", "plisada", "elegante"]
+  },
+  {
+    "title": "Camisa de manga corta",
+    "price": 27.99,
+    "description": "Camisa de manga corta con estampado a rayas.",
+    "slug": "camisa-manga-corta",
+    "stock": 70,
+    "sizes": ["XS", "S", "M", "L"],
+    "gender": "men",
+    "tags": ["camisa", "rayas", "manga corta"]
+  },
+  {
+    "title": "Vestido de fiesta",
+    "price": 69.99,
+    "description": "Vestido elegante para ocasiones especiales.",
+    "slug": "vestido-fiesta",
+    "stock": 20,
+    "sizes": ["S", "M", "L"],
+    "gender": "women",
+    "tags": ["vestido", "fiesta", "elegante"]
+  },
+  {
+    "title": "Sudadera básica",
+    "price": 39.99,
+    "description": "Sudadera cómoda y versátil para el día a día.",
+    "slug": "sudadera-basica",
+    "stock": 50,
+    "sizes": ["XS", "S", "M", "L"],
+    "gender": "unisex",
+    "tags": ["sudadera", "basica", "casual"]
+  },
+  {
+    "title": "Zapatillas para niños",
+    "price": 39.99,
+    "description": "Zapatillas deportivas para niños.",
+    "slug": "zapatillas-ninos",
+    "stock": 30,
+    "sizes": ["EU 25", "EU 26", "EU 27", "EU 28"],
+    "gender": "kid",
+    "tags": ["zapatillas", "deportivas", "niños"]
+  }
+]

@@ -20,7 +20,5 @@ import { TypeOrmModule } from '@nestjs/typeorm'
   ]
 })
 export class PgModule {
-  constructor(private configService: ConfigService) {
-    console.log(this.configService.get('pg'))
-  }
+  constructor(private configService: ConfigService) {}
 }
