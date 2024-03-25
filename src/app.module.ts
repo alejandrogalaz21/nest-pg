@@ -35,7 +35,7 @@ import { ProductsModule } from './products/products.module'
 })
 export class AppModule {
   constructor(private configService: ConfigService) {
-    // console.log('ENV app :', this.configService.get('app'))
-    // console.log('ENV pg :', this.configService.get('pg'))
+    console.log('ENV app :', this.configService.get('app'))
+    console.log('ENV pg :', this.configService.get('pg'))
   }
 }
