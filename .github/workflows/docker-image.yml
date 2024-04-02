@@ -24,7 +24,4 @@ jobs:
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.HOST_KEY }}
           script: |
-            docker compose down
-            docker rmi -f $(docker images -q)
-            docker compose pull
-            docker compose up -d
+            docker compose up --build --force-recreate -d
