@@ -12,8 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Docker login
-      run: docker login -u ${{secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+      run: docker login -u alejandrogalaz21 -p dckr_pat_QXhZRv3XA02Io51Gj3vPmdIUcIg
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/nest-pg:latest
+      run: docker build . --file Dockerfile --tag alejandrogalaz21/nest-pg:latest
     - name: Push image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/nest-pg:latest
+      run: docker push alejandrogalaz21/nest-pg:latest
