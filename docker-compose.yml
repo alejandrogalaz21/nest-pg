@@ -3,16 +3,13 @@ services:
   app:
     depends_on:
       - postgres
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: nest-pg
+    image: alejandrogalaz21/test:latest
     container_name: nest_pg
     restart: always
     ports:
-      - ${PORT}:${PORT}
+      - 3000
     environment:
-      PORT: ${PORT}
+      PORT: 3000
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: $DB_USER
