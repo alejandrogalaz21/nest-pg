@@ -24,4 +24,4 @@ jobs:
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.HOST_KEY }}
           script: |
-            docker compose up --build --force-recreate -d
+            whoami
