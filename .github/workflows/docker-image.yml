@@ -14,6 +14,6 @@ jobs:
     - name: Docker login
       run: docker login -u alejandrogalaz21 -p dckr_pat_QXhZRv3XA02Io51Gj3vPmdIUcIg
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag alejandrogalaz21/nest-pg:latest
+      run: docker build . --file Dockerfile --tag alejandrogalaz21/test:latest
     - name: Push image
-      run: docker push alejandrogalaz21/nest-pg:latest
+      run: docker push alejandrogalaz21/test:latest
