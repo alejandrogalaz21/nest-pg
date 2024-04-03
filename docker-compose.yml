@@ -15,6 +15,9 @@ services:
       DB_USER: $DB_USER
       DB_PASSWORD: $DB_PASSWORD
       DB_NAME: $DB_NAME
+    networks:
+      - default
+      - internal
 
   postgres:
     image: postgres:13
@@ -27,6 +30,15 @@ services:
       POSTGRES_PASSWORD: $DB_PASSWORD
     volumes:
       - postgres_data_app:/var/lib/postgresql/data
+    networks:
+      - internal
 
 volumes:
   postgres_data_app:
+
+networks:
+  default:
+    external: true
+    name: npm
+  internal:
+    internal: true

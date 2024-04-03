@@ -17,19 +17,27 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USERNAME}}/test:latest
       - name: Push image
         run: docker push ${{secrets.DOCKERHUB_USERNAME}}/test:latest
-      - name: copy file via ssh key
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.HOST_USER }}
-          key: ${{ secrets.HOST_KEY }}
-          source: 'docker-compose.yml'
-          target: .
-      - name: run docker-compose
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.HOST_USER }}
-          key: ${{ secrets.HOST_KEY }}
-          script: |
-            docker compose up --build --force-recreate -d
+      - name: run docker container db
+        run: docker run -d \
+          --name postgres_db \
+          -p 5432:5432 \
+          -e POSTGRES_DB=${{secrets.DB_NAME}} \
+          -e POSTGRES_USER=${{secrets.DB_USER}} \
+          -e POSTGRES_PASSWORD=${{secrets.DB_PASSWORD}} \
+          -v postgres_data_app:/var/lib/postgresql/data \
+          --network internal \
+          postgres:13
+      - name: run docker container app
+        run: docker run -d \
+          --name nest_pg \
+          --restart always \
+          -p 3000:3000 \
+          -e PORT=3000 \
+          -e DB_HOST=postgres \
+          -e DB_PORT=5432 \
+          -e DB_USER=${{secrets.DB_USER}} \
+          -e DB_PASSWORD=${{secrets.DB_PASSWORD}} \
+          -e DB_NAME=${{secrets.DB_NAME}} \
+          --network npm \
+          --network internal \
+          alejandrogalaz21/test:latest
