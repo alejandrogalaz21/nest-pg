@@ -29,25 +29,21 @@ jobs:
         run: |
           docker run -d \
             --name postgres_db \
-            -p 5432:5432 \
             -e POSTGRES_DB=${{secrets.DB_NAME}} \
             -e POSTGRES_USER=${{secrets.DB_USER}} \
             -e POSTGRES_PASSWORD=${{secrets.DB_PASSWORD}} \
             -v postgres_data_app:/var/lib/postgresql/data \
-            --network internal \
             postgres:13
       - name: Run Docker container app
         run: |
           docker run -d \
             --name nest_pg \
             --restart always \
-            -p 3000:3000 \
             -e PORT=3000 \
             -e DB_HOST=postgres_db \
             -e DB_PORT=5432 \
             -e DB_USER=${{secrets.DB_USER}} \
             -e DB_PASSWORD=${{secrets.DB_PASSWORD}} \
             -e DB_NAME=${{secrets.DB_NAME}} \
-            --network npm \ # Mantener la red npm para el proxy inverso
-            --network internal \ # Usar la red interna para la comunicación con postgres
+            --network npm \
             alejandrogalaz21/test:latest
