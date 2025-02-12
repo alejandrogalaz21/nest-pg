@@ -4,10 +4,11 @@ services:
   postgres:
     image: postgres:13
     container_name: postgres_db
+    restart: always
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: $DB_NAME
+      POSTGRES_DB: db_test
       POSTGRES_USER: $DB_USER
       POSTGRES_PASSWORD: $DB_PASSWORD
     volumes:

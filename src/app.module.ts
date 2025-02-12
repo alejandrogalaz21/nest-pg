@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common'
+import { Module, ValidationPipe } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
+import { APP_PIPE } from '@nestjs/core'
 // Config's
 import { PgConfig, AppConfig } from './config'
 // modules
@@ -7,6 +8,7 @@ import { PgModule } from './databases/pg.module'
 import { SeedModule } from './seed/seed.module'
 import { UsersModule } from './users/users.module'
 import { ProductsModule } from './products/products.module'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
   imports: [
@@ -14,10 +16,16 @@ import { ProductsModule } from './products/products.module'
     PgModule,
     SeedModule,
     UsersModule,
-    ProductsModule
+    ProductsModule,
+    AuthModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe // Apply ValidationPipe globally
+    }
+  ],
   exports: []
 })
 export class AppModule {

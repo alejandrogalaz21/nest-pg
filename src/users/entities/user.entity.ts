@@ -3,13 +3,17 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate
 } from 'typeorm'
+import * as bcrypt from 'bcrypt'
+import { Exclude } from 'class-transformer'
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: number
+  id: string
 
   @Column()
   name: string
@@ -21,6 +25,7 @@ export class User {
   email: string
 
   @Column()
+  @Exclude()
   password: string
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -32,4 +37,12 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP'
   })
   updatedAt: Date
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    if (this.password) {
+      this.password = await bcrypt.hash(this.password, 10)
+    }
+  }
 }
