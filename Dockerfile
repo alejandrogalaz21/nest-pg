@@ -17,8 +17,6 @@ FROM node:lts-slim as production
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-USER node
-
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -30,5 +28,7 @@ RUN npm install --production
 COPY . .
 
 COPY --from=development /usr/src/app/dist ./dist
+
+USER node
 
 CMD [ "node", "dist/main.js" ]
