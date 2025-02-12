@@ -35,6 +35,21 @@ services:
     networks:
       - internal
 
+  postgres-client:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: alejandrogalaz21@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: hunter2125!
+      VIRTUAL_HOST: pgadmin.alejandrogalaz.space
+      LETSENCRYPT_HOST: pgadmin.alejandrogalaz.space
+    networks:
+      - default
+      - internal
+
 volumes:
   postgres_data_app:
 
