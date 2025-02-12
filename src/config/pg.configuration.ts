@@ -10,6 +10,6 @@ export default registerAs(
       user: process.env.DB_USER ?? 'user',
       password: process.env.DB_PASSWORD ?? 'password',
       database: process.env.DB_NAME ?? 'db_test',
-      synchronize: process.env.NODE_ENV === 'production' ? false : true
+      synchronize: true
     }
 )
