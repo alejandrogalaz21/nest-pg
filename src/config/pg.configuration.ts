@@ -7,8 +7,8 @@ export default registerAs(
     <DatabaseConfig>{
       host: process.env.DB_HOST || 'localhost',
       port: parseInt(process.env.DB_PORT) || 5432,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
+      user: process.env.DB_USER ?? 'user',
+      password: process.env.DB_PASSWORD ?? 'password',
       database: process.env.DB_NAME ?? 'db_test',
       synchronize: process.env.NODE_ENV === 'production' ? false : true
     }

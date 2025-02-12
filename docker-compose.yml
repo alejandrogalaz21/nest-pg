@@ -3,7 +3,7 @@ services:
   app:
     depends_on:
       - postgres
-    image: alejandrogalaz21/test:latest
+    build: .
     container_name: nest_pg
     restart: always
     ports:
@@ -12,9 +12,11 @@ services:
       PORT: 3000
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_USER: $DB_USER
-      DB_PASSWORD: $DB_PASSWORD
-      DB_NAME: $DB_NAME
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: db_test
+      VIRTUAL_HOST: api.alejandrogalaz.space
+      LETSENCRYPT_HOST: api.alejandrogalaz.space
     networks:
       - default
       - internal
@@ -25,9 +27,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: $DB_NAME
-      POSTGRES_USER: $DB_USER
-      POSTGRES_PASSWORD: $DB_PASSWORD
+      POSTGRES_DB: db_test
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
     volumes:
       - postgres_data_app:/var/lib/postgresql/data
     networks:
